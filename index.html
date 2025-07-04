@@ -16,14 +16,14 @@
     }
 
     h1 {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .progress-container {
       width: 80%;
       max-width: 600px;
       background-color: #ddd;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
       height: 30px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -33,20 +33,31 @@
     .progress-bar {
       height: 100%;
       width: 3%;
-      background: linear-gradient(135deg, #4caf50, #81c784, #4caf50);
-      background-size: 200% 200%;
-      animation: shimmer 2s linear infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      min-width: 40px; /* <--- визуальное усиление */
+      position: relative;
       color: white;
       font-weight: bold;
       font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(
+        120deg,
+        #4caf50 25%,
+        #81c784 50%,
+        #4caf50 75%
+      );
+      background-size: 200% 100%;
+      animation: wave 2s linear infinite;
     }
 
-    @keyframes shimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+    @keyframes wave {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
     }
 
     .percent-text-below {
@@ -62,6 +73,6 @@
   <div class="progress-container">
     <div class="progress-bar">3%</div>
   </div>
+  <div class="percent-text-below">Заполнено на 3%. Цель - 100%</div>
 </body>
 </html>
-
