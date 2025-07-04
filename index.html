@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Болий Пельмений</title>
+  <title>болий пельмений</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -33,7 +33,7 @@
     .progress-bar {
       height: 100%;
       width: 3%;
-      min-width: 40px; /* <--- визуальное усиление */
+      min-width: 40px;
       position: relative;
       color: white;
       font-weight: bold;
@@ -41,14 +41,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(
-        120deg,
-        #4caf50 25%,
-        #81c784 50%,
-        #4caf50 75%
-      );
+      background: linear-gradient(120deg, #4caf50 25%, #81c784 50%, #4caf50 75%);
       background-size: 200% 100%;
       animation: wave 2s linear infinite;
+      transition: width 0.5s ease;
     }
 
     @keyframes wave {
@@ -65,14 +61,52 @@
       color: #333;
       font-size: 14px;
     }
+
+    .click-banner {
+      margin-top: 20px;
+      background-color: #ffeb3b;
+      color: #333;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+
+    .click-banner:hover {
+      background-color: #ffe033;
+    }
   </style>
 </head>
 <body>
   <h1>Болий Пельмений</h1>
 
   <div class="progress-container">
-    <div class="progress-bar">3%</div>
+    <div class="progress-bar" id="progressBar">3%</div>
   </div>
-  <div class="percent-text-below">Заполнено на 3%. Цель - 100%</div>
+  <div class="percent-text-below" id="percentText">Заполнено на 3%</div>
+
+  <div class="click-banner" onclick="increaseProgress()">
+    Нажмите сюда, чтобы узнать подробности
+  </div>
+
+  <script>
+    let currentProgress = 3;
+
+    function increaseProgress() {
+      if (currentProgress < 100) {
+        currentProgress += 1;
+        const bar = document.getElementById('progressBar');
+        const text = document.getElementById('percentText');
+        bar.style.width = currentProgress + '%';
+        bar.innerText = currentProgress + '%';
+        text.innerText = `Заполнено на ${currentProgress}%`;
+        alert("Поздравляем, вы стали ближе к цели на 1%!");
+      } else {
+        alert("Вы уже достигли цели! 🎉");
+      }
+    }
+  </script>
 </body>
 </html>
